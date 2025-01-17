@@ -8,6 +8,6 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 # Useful notes
 - "transitive dependencies" = dependencies that the added packages depend on.
 - `flutter pub cache clean` and `flutter pub get` to install and remove packages in projects.
+- [Adding and removing flutter packages](https://stackoverflow.com/questions/57213340/how-to-add-a-package-from-command-line-in-flutter)
 
 # TODO
-- Fix Can't create GL context problem
