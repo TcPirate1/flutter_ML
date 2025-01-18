@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -42,13 +43,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   XFile? _mediaFile;
-  final ImagePicker _imagePicker = new ImagePicker();
+  final ImagePicker _imagePicker = ImagePicker();
 
   Future<void> _takePicture() async {
+    try {
     final XFile? takenPic = await _imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       _mediaFile = takenPic;
     });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
