@@ -1,20 +1,35 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_application_cards/main.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
+import 'dart:io';
+import 'package:flutter_application_cards/main.dart'; // Update with your app's import
 
+import 'widget_test.mocks.dart'; // Import the generated mocks
+
+@GenerateMocks([ImagePicker])
 void main() {
-  testWidgets('smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-  });
-  // Insert sample image into assets, then simulate specific actions
+  testWidgets('Take Picture Button Test', (WidgetTester tester) async {
+    final mockImagePicker = MockImagePicker();
 
-  // test("Text recognition test")
+    // Stub the pickImage method
+    when(mockImagePicker.pickImage(source: ImageSource.camera))
+        .thenAnswer((_) async => XFile('path/to/fake_image.jpg'));
+
+    // Create a widget tree with the mocked ImagePicker
+    await tester.pumpWidget(MyApp());
+
+    // Verify the "Take Picture" button exists
+    final takePictButton = find.text('Take Picture');
+    expect(takePictButton, findsOneWidget);
+
+    // Tap the "Take Picture" button
+    await tester.tap(takePictButton);
+    await tester.pumpAndSettle();
+
+    // Verify the mock pickImage was called
+    verify(mockImagePicker.pickImage(source: ImageSource.camera)).called(1);
+  });
 }
