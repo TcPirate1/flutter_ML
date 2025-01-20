@@ -11,3 +11,4 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 - [Adding and removing flutter packages](https://stackoverflow.com/questions/57213340/how-to-add-a-package-from-command-line-in-flutter)
 
 # TODO
+- Make Github actions (caching dependencies, build on iOS/android, auto upgrade versions)
