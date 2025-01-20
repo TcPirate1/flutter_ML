@@ -22,11 +22,11 @@ void main() {
     await tester.pumpWidget(MyApp());
 
     // Verify the "Take Picture" button exists
-    final buttonFinder = find.text('Take Picture');
-    expect(buttonFinder, findsOneWidget);
+    final takePictButton = find.text('Take Picture');
+    expect(takePictButton, findsOneWidget);
 
     // Tap the "Take Picture" button
-    await tester.tap(buttonFinder);
+    await tester.tap(takePictButton);
     await tester.pumpAndSettle();
 
     // Verify the mock pickImage was called
