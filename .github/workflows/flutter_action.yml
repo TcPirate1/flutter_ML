@@ -10,7 +10,7 @@ on:
 
 jobs:
   flutter-test:
-    runs-on: [ ubuntu-latest, macos-latest ]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
