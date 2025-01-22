@@ -16,6 +16,10 @@ jobs:
     
       runs-on: ${{ matrix.os }}
 
+      defaults:
+        run:
+          working-directory: ./flutter_application_cards
+
       steps:
         - name: Checkout code
           uses: actions/checkout@v4
@@ -32,6 +36,15 @@ jobs:
           with:
             channel: stable
             flutter-version: ${{ env.flutter_version }}
+
+        - name: Cache dependencies
+          uses: actions/cache@v4
+          with:
+            path: |
+              ~/.pub-cache
+              .flutter-plugins
+              .flutter-plugins-dependencies
+            key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml') }}
   
         - name: Install dependencies
           run: flutter pub get
