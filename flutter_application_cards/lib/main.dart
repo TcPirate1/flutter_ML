@@ -7,7 +7,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, this.imgPicker});
+
+  final ImagePicker? imgPicker;
 
   // This widget is the root of your application.
   @override
@@ -18,13 +20,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'FF photos'),
+      home: MyHomePage(title: 'FF photos', imagePicker: imgPicker ?? ImagePicker()),
+      // Whatever is here is required in the class parameter
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.imagePicker});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -36,6 +39,7 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
+  final ImagePicker imagePicker;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -43,11 +47,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   XFile? _mediaFile;
-  final ImagePicker _imagePicker = ImagePicker();
 
   Future<void> _takePicture() async {
     try {
-    final XFile? takenPic = await _imagePicker.pickImage(source: ImageSource.camera);
+    final XFile? takenPic = await widget.imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       _mediaFile = takenPic;
     });

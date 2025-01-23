@@ -22,7 +22,7 @@ jobs:
 
       steps:
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v4.2.2
   
         - name: Get Flutter version
           id: flutter_version
@@ -32,13 +32,13 @@ jobs:
             echo "Flutter version: $FLUTTER_VERSION"
   
         - name: Set up Flutter
-          uses: subosito/flutter-action@v2
+          uses: subosito/flutter-action@v2.18.0
           with:
             channel: stable
             flutter-version: ${{ env.flutter_version }}
 
         - name: Cache dependencies
-          uses: actions/cache@v4
+          uses: actions/cache@v4.2.0
           with:
             path: |
               ~/.pub-cache

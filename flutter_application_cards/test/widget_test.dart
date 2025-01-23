@@ -16,13 +16,13 @@ void main() {
 
     // Stub the pickImage method
     when(mockImagePicker.pickImage(source: ImageSource.camera))
-        .thenAnswer((_) async => XFile('path/to/fake_image.jpg'));
+        .thenAnswer((_) async => XFile('test/asset_test/fake_image.jpg'));
 
     // Create a widget tree with the mocked ImagePicker
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(MyApp(imgPicker: mockImagePicker));
 
     // Verify the "Take Picture" button exists
-    final takePictButton = find.text('Take Picture');
+    final takePictButton = find.text('Take Photo');
     expect(takePictButton, findsOneWidget);
 
     // Tap the "Take Picture" button
