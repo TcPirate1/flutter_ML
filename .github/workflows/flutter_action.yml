@@ -16,9 +16,13 @@ jobs:
     
       runs-on: ${{ matrix.os }}
 
+      defaults:
+        run:
+          working-directory: ./flutter_application_cards
+
       steps:
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v4.2.2
   
         - name: Get Flutter version
           id: flutter_version
@@ -28,10 +32,19 @@ jobs:
             echo "Flutter version: $FLUTTER_VERSION"
   
         - name: Set up Flutter
-          uses: subosito/flutter-action@v2
+          uses: subosito/flutter-action@v2.18.0
           with:
             channel: stable
             flutter-version: ${{ env.flutter_version }}
+
+        - name: Cache dependencies
+          uses: actions/cache@v4.2.0
+          with:
+            path: |
+              ~/.pub-cache
+              .flutter-plugins
+              .flutter-plugins-dependencies
+            key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml') }}
   
         - name: Install dependencies
           run: flutter pub get
