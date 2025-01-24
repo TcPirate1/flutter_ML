@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_application_cards/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
-import 'dart:io';
-import 'package:flutter_application_cards/main.dart'; // Update with your app's import
+// Update with your app's import
 
 import 'widget_test.mocks.dart'; // Import the generated mocks
 
