@@ -14,3 +14,4 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 
 # TODO
 - Find packages/frameworks for the last point in [Useful notes](#Useful-notes)
+- [Study App scripts](https://developers.google.com/codelabs/apps-script-fundamentals-1#1)
