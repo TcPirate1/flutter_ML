@@ -12,6 +12,7 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 - Google ML kit for text recognition.
 - [OpenCV using Canny Edge Detection Algorithm](https://pub.dev/packages/opencv_core)
 - [App scripts for Google Sheets automation.](https://developers.google.com/apps-script) [Use rest api to programatically manipulate the sheets.](https://developers.google.com/apps-script/api/concepts)
+- [The opencv package requires dartcv to also be installed otherwise one of the needed libraries cannot be used](https://github.com/rainyl/dartcv/tree/main). Then find the library using `find / -name libdartcv.so`, in my case the path is "dartcv/build/dartcv/libdartcv.so" and "dartcv/build/install/lib/libdartcv.so"
 
 # TODO
 - Find packages/frameworks for the last point in [Useful notes](#Useful-notes)
