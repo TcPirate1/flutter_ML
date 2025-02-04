@@ -10,7 +10,7 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 - `flutter pub cache clean` and `flutter pub get` to install and remove packages in projects.
 - [Adding and removing flutter packages](https://stackoverflow.com/questions/57213340/how-to-add-a-package-from-command-line-in-flutter)
 - Google ML kit for text recognition.
-- [OpenCV using Canny Edge Detection Algorithm](https://pub.dev/packages/opencv_4/install)
+- [OpenCV using Canny Edge Detection Algorithm](https://pub.dev/packages/opencv_core)
 - [App scripts for Google Sheets automation.](https://developers.google.com/apps-script) [Use rest api to programatically manipulate the sheets.](https://developers.google.com/apps-script/api/concepts)
 
 # TODO

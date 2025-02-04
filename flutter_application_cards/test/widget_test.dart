@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
+import 'package:opencv_core/opencv.dart';
 // Update with your app's import
 
 import 'widget_test.mocks.dart'; // Import the generated mocks
@@ -29,5 +30,18 @@ void main() {
 
     // Verify the mock pickImage was called
     verify(mockImagePicker.pickImage(source: ImageSource.camera)).called(1);
+  });
+
+  test("Edge detection with OpenCV core", () async {
+    final testImg = imread("test/asset_test/fake_image.jpg");
+    expect(!testImg.isEmpty, isNotEmpty);
+
+    final Mat grayImg = cvtColor(testImg, COLOR_BGR2GRAY);
+
+    final edge = canny(grayImg, 100, 200);
+
+    expect(edge, isNotEmpty);
+
+    // imwrite("Processed image", edge);
   });
 }
