@@ -34,13 +34,13 @@ void main() {
 
   test("Edge detection with OpenCV core", () async {
     final testImg = imread("test/asset_test/fake_image.jpg");
-    expect(!testImg.isEmpty, isNotEmpty);
+    expect(testImg.isEmpty, isFalse);
 
     final Mat grayImg = cvtColor(testImg, COLOR_BGR2GRAY);
 
     final edge = canny(grayImg, 100, 200);
 
-    expect(edge, isNotEmpty);
+    expect(edge.isEmpty, isFalse);
 
     // imwrite("Processed image", edge);
   });
