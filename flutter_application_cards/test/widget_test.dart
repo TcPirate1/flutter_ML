@@ -44,10 +44,5 @@ void main() {
     final edge = canny(blurredImg, 100, 200);
 
     expect(edge.isEmpty, isFalse);
-
-    // imwrite("Processed image", edge);
-    List<Mat> contours = [];
-    Mat hierarchy = Mat.zeros(1, 1, MatType.CV_8UC1);
-    findContours(edge, RETR_TREE, CHAIN_APPROX_SIMPLE);
   });
 }
