@@ -5,10 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:flutter_application_cards/text_recognizer_abstract_class.dart'
+    as _i5;
 import 'package:image_picker/image_picker.dart' as _i3;
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -154,4 +157,26 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
             returnValue: false,
           )
           as bool);
+}
+
+/// A class which mocks [TxtRecognizer].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTxtRecognizer extends _i1.Mock implements _i5.TxtRecognizer {
+  MockTxtRecognizer() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<String> recognizeText(String? filePath) =>
+      (super.noSuchMethod(
+            Invocation.method(#recognizeText, [filePath]),
+            returnValue: _i4.Future<String>.value(
+              _i6.dummyValue<String>(
+                this,
+                Invocation.method(#recognizeText, [filePath]),
+              ),
+            ),
+          )
+          as _i4.Future<String>);
 }

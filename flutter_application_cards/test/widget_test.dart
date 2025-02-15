@@ -1,17 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter_application_cards/main.dart';
+import 'package:flutter_application_cards/text_recognizer_abstract_class.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:opencv_core/opencv.dart';
-// Update with your app's import
 
 import 'widget_test.mocks.dart'; // Import the generated mocks
 
 @GenerateMocks([ImagePicker])
+  @GenerateMocks([TxtRecognizer])
 void main() {
   testWidgets('Take Picture Button Test', (WidgetTester tester) async {
     final mockImagePicker = MockImagePicker();
@@ -48,11 +46,6 @@ void main() {
 
     expect(edge.isEmpty, isFalse);
   });
-  // @GenerateMocks([google_mlkit_text_recognition])
   test ("Find text in the image", () async {
-    final txtRecognizer = TextRecognizer();
-    final RecognizedText recognizedText = await txtRecognizer.processImage(InputImage.fromFile(File('test/asset_test/fake_image.jpg')));
-    print(recognizedText);
-    txtRecognizer.close();
   });
 }
