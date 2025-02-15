@@ -40,6 +40,7 @@ dependencies:
   googleapis: ^13.2.0
   google_mlkit_text_recognition: ^0.14.0
   opencv_core: ^1.4.0
+  flutter_tesseract_ocr: ^0.4.28
 
 dev_dependencies:
   flutter_test:
