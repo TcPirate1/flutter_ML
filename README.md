@@ -16,6 +16,5 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 
 # TODO
 - Find packages/frameworks for the last point in [Useful notes](#Useful-notes)
-- [Tensorflow model training](https://www.tensorflow.org/guide/keras/training_with_built_in_methods)
 - [Study App scripts](https://developers.google.com/codelabs/apps-script-fundamentals-1#1)
-- Find out why paste command doesn't work on Code oss (linux)
+- Find out why paste command doesn't work on Code oss (linux). Don't know but ctrt + shift + v works.
