@@ -3,11 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:flutter_application_cards/text_recognizer_abstract_class.dart'
-    as _i5;
-import 'package:image_picker/image_picker.dart' as _i3;
+import 'package:google_mlkit_commons/google_mlkit_commons.dart' as _i7;
+import 'package:google_mlkit_text_recognition/src/text_recognizer.dart' as _i3;
+import 'package:image_picker/image_picker.dart' as _i4;
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -33,16 +33,22 @@ class _FakeLostDataResponse_0 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
+class _FakeRecognizedText_1 extends _i1.SmartFake
+    implements _i3.RecognizedText {
+  _FakeRecognizedText_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [ImagePicker].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
+class MockImagePicker extends _i1.Mock implements _i4.ImagePicker {
   MockImagePicker() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.XFile?> pickImage({
+  _i5.Future<_i2.XFile?> pickImage({
     required _i2.ImageSource? source,
     double? maxWidth,
     double? maxHeight,
@@ -59,12 +65,12 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
               #preferredCameraDevice: preferredCameraDevice,
               #requestFullMetadata: requestFullMetadata,
             }),
-            returnValue: _i4.Future<_i2.XFile?>.value(),
+            returnValue: _i5.Future<_i2.XFile?>.value(),
           )
-          as _i4.Future<_i2.XFile?>);
+          as _i5.Future<_i2.XFile?>);
 
   @override
-  _i4.Future<List<_i2.XFile>> pickMultiImage({
+  _i5.Future<List<_i2.XFile>> pickMultiImage({
     double? maxWidth,
     double? maxHeight,
     int? imageQuality,
@@ -79,12 +85,12 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
               #limit: limit,
               #requestFullMetadata: requestFullMetadata,
             }),
-            returnValue: _i4.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
+            returnValue: _i5.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
           )
-          as _i4.Future<List<_i2.XFile>>);
+          as _i5.Future<List<_i2.XFile>>);
 
   @override
-  _i4.Future<_i2.XFile?> pickMedia({
+  _i5.Future<_i2.XFile?> pickMedia({
     double? maxWidth,
     double? maxHeight,
     int? imageQuality,
@@ -97,12 +103,12 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
               #imageQuality: imageQuality,
               #requestFullMetadata: requestFullMetadata,
             }),
-            returnValue: _i4.Future<_i2.XFile?>.value(),
+            returnValue: _i5.Future<_i2.XFile?>.value(),
           )
-          as _i4.Future<_i2.XFile?>);
+          as _i5.Future<_i2.XFile?>);
 
   @override
-  _i4.Future<List<_i2.XFile>> pickMultipleMedia({
+  _i5.Future<List<_i2.XFile>> pickMultipleMedia({
     double? maxWidth,
     double? maxHeight,
     int? imageQuality,
@@ -117,12 +123,12 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
               #limit: limit,
               #requestFullMetadata: requestFullMetadata,
             }),
-            returnValue: _i4.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
+            returnValue: _i5.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
           )
-          as _i4.Future<List<_i2.XFile>>);
+          as _i5.Future<List<_i2.XFile>>);
 
   @override
-  _i4.Future<_i2.XFile?> pickVideo({
+  _i5.Future<_i2.XFile?> pickVideo({
     required _i2.ImageSource? source,
     _i2.CameraDevice? preferredCameraDevice = _i2.CameraDevice.rear,
     Duration? maxDuration,
@@ -133,22 +139,22 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
               #preferredCameraDevice: preferredCameraDevice,
               #maxDuration: maxDuration,
             }),
-            returnValue: _i4.Future<_i2.XFile?>.value(),
+            returnValue: _i5.Future<_i2.XFile?>.value(),
           )
-          as _i4.Future<_i2.XFile?>);
+          as _i5.Future<_i2.XFile?>);
 
   @override
-  _i4.Future<_i2.LostDataResponse> retrieveLostData() =>
+  _i5.Future<_i2.LostDataResponse> retrieveLostData() =>
       (super.noSuchMethod(
             Invocation.method(#retrieveLostData, []),
-            returnValue: _i4.Future<_i2.LostDataResponse>.value(
+            returnValue: _i5.Future<_i2.LostDataResponse>.value(
               _FakeLostDataResponse_0(
                 this,
                 Invocation.method(#retrieveLostData, []),
               ),
             ),
           )
-          as _i4.Future<_i2.LostDataResponse>);
+          as _i5.Future<_i2.LostDataResponse>);
 
   @override
   bool supportsImageSource(_i2.ImageSource? source) =>
@@ -159,24 +165,49 @@ class MockImagePicker extends _i1.Mock implements _i3.ImagePicker {
           as bool);
 }
 
-/// A class which mocks [TxtRecognizer].
+/// A class which mocks [TextRecognizer].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTxtRecognizer extends _i1.Mock implements _i5.TxtRecognizer {
-  MockTxtRecognizer() {
+class MockTextRecognizer extends _i1.Mock implements _i3.TextRecognizer {
+  MockTextRecognizer() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<String> recognizeText(String? filePath) =>
+  _i3.TextRecognitionScript get script =>
       (super.noSuchMethod(
-            Invocation.method(#recognizeText, [filePath]),
-            returnValue: _i4.Future<String>.value(
-              _i6.dummyValue<String>(
+            Invocation.getter(#script),
+            returnValue: _i3.TextRecognitionScript.latin,
+          )
+          as _i3.TextRecognitionScript);
+
+  @override
+  String get id =>
+      (super.noSuchMethod(
+            Invocation.getter(#id),
+            returnValue: _i6.dummyValue<String>(this, Invocation.getter(#id)),
+          )
+          as String);
+
+  @override
+  _i5.Future<_i3.RecognizedText> processImage(_i7.InputImage? inputImage) =>
+      (super.noSuchMethod(
+            Invocation.method(#processImage, [inputImage]),
+            returnValue: _i5.Future<_i3.RecognizedText>.value(
+              _FakeRecognizedText_1(
                 this,
-                Invocation.method(#recognizeText, [filePath]),
+                Invocation.method(#processImage, [inputImage]),
               ),
             ),
           )
-          as _i4.Future<String>);
+          as _i5.Future<_i3.RecognizedText>);
+
+  @override
+  _i5.Future<void> close() =>
+      (super.noSuchMethod(
+            Invocation.method(#close, []),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
 }

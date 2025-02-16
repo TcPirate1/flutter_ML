@@ -1,15 +1,15 @@
 import 'package:flutter_application_cards/main.dart';
-import 'package:flutter_application_cards/text_recognizer_abstract_class.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:opencv_core/opencv.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
 import 'widget_test.mocks.dart'; // Import the generated mocks
 
 @GenerateMocks([ImagePicker])
-  @GenerateMocks([TxtRecognizer])
+@GenerateMocks([TextRecognizer])
 void main() {
   testWidgets('Take Picture Button Test', (WidgetTester tester) async {
     final mockImagePicker = MockImagePicker();
@@ -47,18 +47,20 @@ void main() {
     expect(edge.isEmpty, isFalse);
   });
 
-  late MockTxtRecognizer mockTxtRecognizer;
+  late MockTextRecognizer mockTxtRecognizer;
+  late InputImage testImg;
   setUp(() {
-    mockTxtRecognizer = MockTxtRecognizer();
+    mockTxtRecognizer = MockTextRecognizer();
+    testImg = InputImage.fromFilePath('test/asset_test/fake_image.jpg');
   });
   test ("Find text in the image", () async {
-    const filePath = 'test/asset_test/fake_image.jpg';
-    const expectedTxt = 'Some text. Idk.';
+    final mockRecognizedTxt = RecognizedText(text: "Brave\nIf 1 or less Time Counters are placed on Fake, Fake cannot attack or block.\nWhen you receive a point of damage, place 1 Time Counter on Fake.", blocks: []);
+    when(mockTxtRecognizer.processImage(any)).thenAnswer((_) async => mockRecognizedTxt);
 
-    when(mockTxtRecognizer.recognizeText(filePath)).thenAnswer((_) async => expectedTxt);
-
-    final result = await mockTxtRecognizer.recognizeText(filePath);
-
-    print("Text: $result");
+    final result = await mockTxtRecognizer.processImage(testImg);
+    expect(result.text, contains("Fake"));
+    expect(result.text, contains("Brave"));
+    expect(result.text, contains("Time Counter"));
+    expect(result.text, contains("Time Counters"));
   });
 }
