@@ -46,6 +46,19 @@ void main() {
 
     expect(edge.isEmpty, isFalse);
   });
+
+  late MockTxtRecognizer mockTxtRecognizer;
+  setUp(() {
+    mockTxtRecognizer = MockTxtRecognizer();
+  });
   test ("Find text in the image", () async {
+    const filePath = 'test/asset_test/fake_image.jpg';
+    const expectedTxt = 'Some text. Idk.';
+
+    when(mockTxtRecognizer.recognizeText(filePath)).thenAnswer((_) async => expectedTxt);
+
+    final result = await mockTxtRecognizer.recognizeText(filePath);
+
+    print("Text: $result");
   });
 }
