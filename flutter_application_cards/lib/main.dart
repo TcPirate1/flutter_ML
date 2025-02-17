@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _recognizedText.isNotEmpty
                 ? Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text("Extracted Text:\n$_recognizedText"),
+                    child: Text(_recognizedText),
                   )
                 : Container(),
           ],
