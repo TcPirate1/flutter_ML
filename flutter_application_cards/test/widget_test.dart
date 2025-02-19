@@ -11,6 +11,12 @@ import 'widget_test.mocks.dart'; // Import the generated mocks
 @GenerateMocks([ImagePicker])
 @GenerateMocks([TextRecognizer])
 void main() {
+  late final Mat testImg;
+  late final Mat grayImg;
+  setUpAll(() {
+    testImg = imread("test/asset_test/fake_image.jpg");
+    grayImg = cvtColor(testImg, COLOR_BGR2GRAY);
+  });
   testWidgets('Take Picture Button Test', (WidgetTester tester) async {
     final mockImagePicker = MockImagePicker();
 
@@ -34,10 +40,7 @@ void main() {
   });
 
   test("Edge detection with OpenCV core", () async {
-    final testImg = imread("test/asset_test/fake_image.jpg");
     expect(testImg.isEmpty, isFalse);
-
-    final Mat grayImg = cvtColor(testImg, COLOR_BGR2GRAY);
 
     final blurredImg = gaussianBlur(grayImg, (5,5), 0);
     // ksize = kernal size == Apeture Size. Why does it have to be odd???
@@ -47,17 +50,32 @@ void main() {
     expect(edge.isEmpty, isFalse);
   });
 
+  test("Image blurry or not blurry detection", () async {
+    Mat lapImg = laplacian(grayImg, MatType.CV_64F);
+    final double variance = lapImg.variance().val1;
+    final double threshold = 100.0;
+
+    if (variance < threshold) {
+      print("image is blurry");
+    }
+    else {
+      print("image is fine");
+    }
+
+    expect(variance, isNonZero);
+  });
+
   late MockTextRecognizer mockTxtRecognizer;
-  late InputImage testImg;
+  late InputImage inputImg;
   setUp(() {
     mockTxtRecognizer = MockTextRecognizer();
-    testImg = InputImage.fromFilePath('test/asset_test/fake_image.jpg');
+    inputImg = InputImage.fromFilePath('test/asset_test/fake_image.jpg');
   });
   test ("Find text in the image", () async {
     final mockRecognizedTxt = RecognizedText(text: "Brave\nIf 1 or less Time Counters are placed on Fake, Fake cannot attack or block.\nWhen you receive a point of damage, place 1 Time Counter on Fake.", blocks: []);
     when(mockTxtRecognizer.processImage(any)).thenAnswer((_) async => mockRecognizedTxt);
 
-    final result = await mockTxtRecognizer.processImage(testImg);
+    final result = await mockTxtRecognizer.processImage(inputImg);
     expect(result.text, contains("Fake"));
     expect(result.text, contains("Brave"));
     expect(result.text, contains("Time Counter"));
