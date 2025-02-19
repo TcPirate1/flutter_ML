@@ -4,7 +4,7 @@ from pytesseract import Output
 import imutils
 
 # Load the image
-image = cv2.imread('card_images/noctis_180.jpg')
+image = cv2.imread('card_images/cloud_180.jpg')
 if image is None:
     print("Error: Image not found.")
     exit()
@@ -18,9 +18,11 @@ variance = laplacian.var()
 # low variance = blurry
 
 if variance < 100.0:
+    print(variance)
     print("[INFO] image is blurry")
     exit()
 else:
+    print(variance)
     print("[INFO] image is fine")
 
 # Convert image to RGB

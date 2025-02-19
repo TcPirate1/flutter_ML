@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   /// Processes the image and extracts text using Google ML Kit
   Future<void> _processImage(File imageFile) async {
     // Put preprocessing function in here
-    final test = imread(imageFile.toString());
+    final test = imread(imageFile.path);
     await isImgBlurry(test);
     final inputImage = InputImage.fromFile(imageFile);
     final textRecognizer = TextRecognizer();
