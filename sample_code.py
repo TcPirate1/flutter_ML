@@ -4,10 +4,24 @@ from pytesseract import Output
 import imutils
 
 # Load the image
-image = cv2.imread('card_images/enima_90.jpg')
+image = cv2.imread('card_images/noctis_180.jpg')
 if image is None:
     print("Error: Image not found.")
     exit()
+
+# gray image
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# use laplacian method
+laplacian = cv2.Laplacian(gray, cv2.CV_64F)
+variance = laplacian.var()
+# low variance = blurry
+
+if variance < 100.0:
+    print("[INFO] image is blurry")
+    exit()
+else:
+    print("[INFO] image is fine")
 
 # Convert image to RGB
 rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
