@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:flutter_application_cards/preprocess_img.dart';
+import 'package:opencv_core/opencv.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// Processes the image and extracts text using Google ML Kit
   Future<void> _processImage(File imageFile) async {
+    // Put preprocessing function in here
+    final test = imread(imageFile.toString());
+    await isImgBlurry(test);
     final inputImage = InputImage.fromFile(imageFile);
     final textRecognizer = TextRecognizer();
 
