@@ -17,8 +17,10 @@ Future<void> isImgBlurry(Mat img, {double threshold = 100.0}) async {
   }
   
   Mat rgbColor = cvtColor(lapImg, COLOR_BGR2RGB);
+  // CvException Unsupported depth of input image:> 'VDepth::contains(depth)'> where> 'depth' is 6 (CV_64F)
 
   String osdData = await FlutterTesseractOcr.extractText(img.toString());
+  // _AssertionError ('package:flutter_tesseract_ocr/android_ios.dart': Failed assertion: line 24 pos 12: 'await File(imagePath).exists()': true)
   
   print(osdData);
 }
