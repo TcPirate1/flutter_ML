@@ -13,6 +13,7 @@ Combining ML with photos. Analyze photos and store information gained into a dat
 - [OpenCV using Canny Edge Detection Algorithm](https://pub.dev/packages/opencv_core)
 - [App scripts for Google Sheets automation.](https://developers.google.com/apps-script) [Use rest api to programatically manipulate the sheets.](https://developers.google.com/apps-script/api/concepts)
 - [The opencv package requires dartcv to also be installed otherwise one of the needed libraries cannot be used](https://github.com/rainyl/dartcv/tree/main). Then find the library using `find / -name libdartcv.so`, in my case the path is "dartcv/build/dartcv/libdartcv.so" and "dartcv/build/install/lib/libdartcv.so"
+- [Tesseract can detect orientation of text](https://pyimagesearch.com/2022/01/31/correcting-text-orientation-with-tesseract-and-python/)
 
 # TODO
 - Find packages/frameworks for the last point in [Useful notes](#Useful-notes)

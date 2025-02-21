@@ -3,7 +3,6 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:flutter_application_cards/preprocess_img.dart';
-// import 'package:opencv_core/opencv.dart';
 
 void main() {
   runApp(const MyApp());
@@ -103,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton.icon(
               onPressed: () => _pickImage(ImageSource.camera),
               icon: const Icon(Icons.camera_alt),
-              label: const Text('Take a Picture'),
+              label: const Text('Take Photo'),
             ),
             const SizedBox(height: 20),
             _recognizedText.isNotEmpty
