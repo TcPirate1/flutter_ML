@@ -63,20 +63,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _processImage(File imageFile) async {
     // Put preprocessing function in here
     await isImgBlurry(imageFile);
-    final inputImage = InputImage.fromFile(imageFile);
-    final textRecognizer = TextRecognizer();
+    // final inputImage = InputImage.fromFile(imageFile);
+    // final textRecognizer = TextRecognizer();
 
-    try {
-      final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
-      setState(() {
-        _recognizedText = recognizedText.text;
-      });
-      print('Recognized Text:\n$_recognizedText');
-    } catch (e) {
-      print('Error recognizing text: $e');
-    } finally {
-      textRecognizer.close();
-    }
+    // try {
+    //   final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
+    //   setState(() {
+    //     _recognizedText = recognizedText.text;
+    //   });
+    //   print('Recognized Text:\n$_recognizedText');
+    // } catch (e) {
+    //   print('Error recognizing text: $e');
+    // } finally {
+    //   textRecognizer.close();
+    // }
   }
 
   @override

@@ -4,7 +4,7 @@ from pytesseract import Output
 import imutils
 
 # Load the image
-image = cv2.imread('card_images/cloud_180.jpg')
+image = cv2.imread('card_images/firion_0_sleeved.jpg')
 if image is None:
     print("Error: Image not found.")
     exit()
@@ -38,12 +38,12 @@ print("[INFO] rotate by {} degrees to correct".format(
 print("[INFO] detected script: {}".format(osd_data["script"]))
 
 # Rotate image to correct orientation
-corrected_image = imutils.rotate_bound(image, angle=osd_data["rotate"])
+# corrected_image = imutils.rotate_bound(image, angle=osd_data["rotate"])
 
-# Display the corrected image
-cv2.imshow('Corrected Image', corrected_image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# # Display the corrected image
+# cv2.imshow('Corrected Image', corrected_image)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
 
-# Save the corrected image
-cv2.imwrite('corrected_image.jpg', corrected_image)
+# # Save the corrected image
+# cv2.imwrite('corrected_image.jpg', corrected_image)

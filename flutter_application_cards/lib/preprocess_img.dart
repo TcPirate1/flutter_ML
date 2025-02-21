@@ -21,10 +21,36 @@ Future<void> isImgBlurry(File img, {double threshold = 100.0}) async {
   }
   
   Mat rgbColor = cvtColor(test, COLOR_BGR2RGB);
-  // CvException Unsupported depth of input image:> 'VDepth::contains(depth)'> where> 'depth' is 6 (CV_64F)
 
   String osdData = await FlutterTesseractOcr.extractText(img.path, args: {"psm": "0"});
-  // _AssertionError ('package:flutter_tesseract_ocr/android_ios.dart': Failed assertion: line 24 pos 12: 'await File(imagePath).exists()': true)
+  // psm 0 = Orientation and script detection (OSD) only.
+  // String is empty
+  print("Image osd:\n$osdData");
   
-  print(osdData);
+  int orientation = 0;
+  int rotate = 0;
+  String script = "N/A";
+
+  RegExp orientationRegExp = RegExp(r'Orientation in degrees: (\d+)');
+  RegExp rotateRegExp = RegExp(r'Rotate: (\d+)');
+  RegExp scriptRegExp = RegExp(r'Script: (\w+)');
+
+  Match? orientationMatch = orientationRegExp.firstMatch(osdData);
+  Match? rotateMatch = rotateRegExp.firstMatch(osdData);
+  Match? scriptMatch = scriptRegExp.firstMatch(osdData);
+
+  if (orientationMatch != null) {
+    orientation = int.parse(orientationMatch.group(1)!);
+  }
+  if (rotateMatch != null) {
+    rotate = int.parse(rotateMatch.group(1)!);
+  }
+  if (scriptMatch != null) {
+    script = scriptMatch.group(1)!;
+  }
+
+  // Output the extracted information
+  print("Detected Orientation: $orientation degrees");
+  print("Rotate by: $rotate degrees to correct");
+  print("Detected Script: $script");
 }
