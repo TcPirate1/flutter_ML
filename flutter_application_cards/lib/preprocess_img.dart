@@ -19,10 +19,8 @@ Future<void> isImgBlurry(File img, {double threshold = 100.0}) async {
   else {
     print("Not blurry");
   }
-  
-  Mat rgbColor = cvtColor(test, COLOR_BGR2RGB);
 
-  String osdData = await FlutterTesseractOcr.extractText(img.path, args: {"psm": "0"});
+  String osdData = await FlutterTesseractOcr.extractText(img.path, language: 'eng', args: {"psm": "0"});
   // psm 0 = Orientation and script detection (OSD) only.
   // String is empty
   print("Image osd:\n$osdData");
